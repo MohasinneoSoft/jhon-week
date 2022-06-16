@@ -1,0 +1,346 @@
+{
+	"info": {
+		"_postman_id": "f4a6365e-999f-40db-875f-221c7721166d",
+		"name": "Procurment Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21475416"
+	},
+	"item": [
+		{
+			"name": "admin api",
+			"item": [
+				{
+					"name": "admin login",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYTlkMDZmYjNmNzc1NjQ1MTJlZWI1OSIsImVtYWlsIjoiYWRtaW5AdGVzdC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NTUyOTY4ODgsImV4cCI6MTY1NTM4MzI4OH0.gXSgQE-WVN442dVARAzlBYS0MFFTw_2dTFWA2v08fYI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"admin@test.com\",\r\n    \"password\" : \"1234567890\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/user/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create procurement , inspectore",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmE5ZDA2ZmIzZjc3NTY0NTEyZWViNTkiLCJpYXQiOjE2NTUzNTY1OTcsImV4cCI6MTY1NTQ0Mjk5N30.6mh4aPvhlDmYvn2if62JQ1kbn6sbttuFyP3S3C7v5yg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"First_name\" : \"user\",\r\n    \"Last_name\" : \"user\",\r\n    \"email\" : \"inspectore1@test.com\",\r\n    \"password\" : \"1234567890\",\r\n    \"mobileNumber\" : \"7879745865\",\r\n    \"Role\" : \"inspection manager\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/user/sign-up",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"user",
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "client api",
+			"item": [
+				{
+					"name": "create client",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"First_name\" : \"client2\",\r\n    \"Last_name\" : \"name1\",\r\n    \"email\" : \"client2@test.com\",\r\n    \"mobileNumber\" : \"0987656783\",\r\n    \"address\" : \"21 abc street xyz\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/client/createClient",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"client",
+								"createClient"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all client",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/client/getAllClient",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"client",
+								"getAllClient"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getClientById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/client/getClientById?id=62aae3a7d8ebc28c00b1bed6",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"client",
+								"getClientById"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "62aae3a7d8ebc28c00b1bed6"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "procurement api",
+			"item": [
+				{
+					"name": "procurement login",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYTlkMDZmYjNmNzc1NjQ1MTJlZWI1OSIsImVtYWlsIjoiYWRtaW5AdGVzdC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NTUyOTY4ODgsImV4cCI6MTY1NTM4MzI4OH0.gXSgQE-WVN442dVARAzlBYS0MFFTw_2dTFWA2v08fYI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"user@test.com\",\r\n    \"password\" : \"1234567890\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/user/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "inspectore api",
+			"item": [
+				{
+					"name": "inspectore login",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYTlkMDZmYjNmNzc1NjQ1MTJlZWI1OSIsImVtYWlsIjoiYWRtaW5AdGVzdC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NTUyOTY4ODgsImV4cCI6MTY1NTM4MzI4OH0.gXSgQE-WVN442dVARAzlBYS0MFFTw_2dTFWA2v08fYI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"inspectore@test.com\",\r\n    \"password\" : \"1234567890\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/user/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "order api",
+			"item": [
+				{
+					"name": "create order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"clientId\" : \"62aac3180a873172fc9deb3a\",\r\n    \"order_type\" : \"charger\",\r\n    \"from\" : \"ujjain\",\r\n    \"to\" : \"delhi\",\r\n    \"vehical_details\": \"MP90EY8929 , driverNAme , Licence No \"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/order/createOrder",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"order",
+								"createOrder"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get order by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/order/getOrderById?id=62aad4fbc4c54ddc4eabb2c7",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"order",
+								"getOrderById"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "62aad4fbc4c54ddc4eabb2c7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all order by client id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/order/getAllOrder?id=62aac3180a873172fc9deb3a",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"order",
+								"getAllOrder"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "62aac3180a873172fc9deb3a"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
