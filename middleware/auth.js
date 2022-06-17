@@ -1,18 +1,17 @@
+//require jwt
 const jwt = require("jsonwebtoken");
 
+//jwt secret enviorment verible
 const config = process.env.JWT_SECRET;
 
+//create auth middleware
 const verifyToken = (req, res, next) => {
-  console.log("req", req.headers.authorization);
-
   const token = req.headers.authorization.split(" ")[1];
-  console.log("token", token);
 
   if (!token) {
     return res.status(403).send("A token is required for authentication");
   }
   try {
-    console.log("hii");
     const decoded = jwt.verify(token, config);
     req.user = decoded;
   } catch (err) {
@@ -21,4 +20,5 @@ const verifyToken = (req, res, next) => {
   return next();
 };
 
+//export middleware
 module.exports = verifyToken;

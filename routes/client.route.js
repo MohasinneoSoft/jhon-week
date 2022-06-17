@@ -1,18 +1,19 @@
 const express = require("express");
 const routes = express.Router();
-const {createClient,getlistOfClient,getClientById} = require("../controllers/client.controller");
+const {
+  createClient,
+  getlistOfClient,
+  getClientById,
+} = require("../controllers/client.controller");
 
+const verifyToken = require("../middleware/auth");
+//create client
+routes.post("/createClient", verifyToken, createClient);
 
-//create client 
-routes.post('/createClient' , createClient)
+//get all client
+routes.get("/getAllClient", verifyToken, getlistOfClient);
 
-//get all client 
-routes.get('/getAllClient' , getlistOfClient)
-
-//get client by id 
-routes.get('/getClientById' , getClientById)
-
-
-
+//get client by id
+routes.get("/getClientById", verifyToken, getClientById);
 
 module.exports = routes;

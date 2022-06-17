@@ -1,12 +1,14 @@
+//destructure schema from mongoose
 const { Schema, model } = require("mongoose");
 
-//role
+//create role
 const role_enum = {
   ADMIN: "admin",
   PROCURMENTMANAGER: "procurment manager",
   INSPECTIONMANAGAER: "inspection manager",
 };
 
+//create user schema
 const userSchema = new Schema(
   {
     First_name: {
@@ -40,6 +42,8 @@ const userSchema = new Schema(
   { timestamps: true }
 );
 
+//convert to model
 const userModel = model("users", userSchema);
 
+//export model
 module.exports = userModel;

@@ -63,12 +63,9 @@ const signUpuser = async (req, res) => {
 //login api of user with jwt
 const loginUser = async (req, res) => {
   const { mobileNumber, email, password } = req.body;
-  console.log("pass", password);
 
   const numberExists = await userModel.findOne({ mobileNumber });
   const user = await userModel.findOne({ email });
-
-  console.log("user", user);
 
   const ComparePass = await bcrypt.compare(password, user.password);
 

@@ -11,6 +11,8 @@ const {
   Signout,
   getUserById,
 } = require("../controllers/user.controller");
+
+//import auth middleware
 const verifyToken = require("../middleware/auth");
 //add user api
 routes.post("/sign-up", verifyToken, signUpuser);

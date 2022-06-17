@@ -1,5 +1,7 @@
+//destructure schema from mongoose
 const { Schema, model } = require("mongoose");
 
+//create client schema
 const clientSchema = new Schema(
   {
     First_name: {
@@ -17,17 +19,18 @@ const clientSchema = new Schema(
       required: true,
       unique: true,
     },
-    address : {
-        type : String,
-        required : true
+    address: {
+      type: String,
+      required: true,
     },
 
     mobileNumber: [Number],
-
   },
   { timestamps: true }
 );
 
+//convert to model
 const clientModel = model("clients", clientSchema);
 
-module.exports = { clientModel};
+//export model
+module.exports = { clientModel };
