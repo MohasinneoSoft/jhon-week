@@ -1,31 +1,28 @@
-const { clientModel } = require("../models/client.model");
+const userModel = require("../models/user.model");
 
 //create a client
 
 const createClient = async (req, res) => {
-  const { First_name, Last_name, email, mobileNumber, address } = req.body;
+  const { first_name, last_name, email, mobile_number, address } = req.body;
 
   //Validation
-  if (!First_name || !Last_name || !email || !mobileNumber || !address) {
+  if (!first_name || !last_name || !email || !mobile_number || !address) {
     res.status(400).send("Please include all fields.");
   }
 
-  const clientExists = await clientModel.findOne({ email });
-
-  const numberExists = await clientModel.findOne({ mobileNumber });
+  const clientExists = await userModel.findOne({ email,mobile_number });
 
   if (clientExists) {
     res.status(400).send("Email already exists");
-  } else if (numberExists) {
-    res.status(400).send("Number already exists");
   } else {
     //save client in db
-    const client = new clientModel({
-      First_name,
-      Last_name,
+    const client = new userModel({
+      first_name,
+      last_name,
       email,
-      mobileNumber,
+      mobile_number,
       address,
+      role : "client"
     });
     client.save((err, data) => {
       if (err) {
@@ -34,37 +31,38 @@ const createClient = async (req, res) => {
           err: err,
         });
       } else {
-        return res.status(200).json({ msg: "client created", data: data });
+        return res.status(200).json({ msg: "client created", data });
       }
     });
   }
 };
 
 //get all client  list with paggination
-const getlistOfClient = (req, res) => {
-  let page = req.query.pageNo - 1;
-  let limit = req.query.limit;
-  let skip = page * limit;
-  clientModel
-    .find()
-    .limit(limit)
-    .skip(skip)
-    .then((data) => {
-      return res.status(200).json({
-        total: data.length,
-        msg: "successfully got all client",
-        result: data,
-      });
-    })
-    .catch((err) => {
-      return res.status(400).json({ error: err, msg: "failed to get client" });
-    });
-};
+// const getlistOfClient = async(req, res) => {
+//   let page = req.query.pageNo - 1;
+//   let limit = req.query.limit;
+//   let skip = page * limit;
+//   const user = await userModel
+//     .find().where(userModel.role).equals("client")
+//     .limit(limit)
+//     .skip(skip)
+//     .then((data) => {
+//       return res.status(200).json({
+//         total: data.length,
+//         msg: "successfully got all client",
+//       data
+//       });
+//     })
+//     .catch((err) => {
+//       return res.status(400).json({ error: err, msg: "failed to get client" });
+//     });
+//     console.log(user , "client");
+// };
 
 //get client by id
 const getClientById = (req, res) => {
-  let id = req.query.id;
-  clientModel
+  let id = req.param.id;
+  userModel
     .findById(id)
     .then((data) => {
       return res.status(200).json({

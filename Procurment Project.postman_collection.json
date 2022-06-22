@@ -67,7 +67,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"First_name\" : \"user\",\r\n    \"Last_name\" : \"user\",\r\n    \"email\" : \"inspectore1@test.com\",\r\n    \"password\" : \"1234567890\",\r\n    \"mobileNumber\" : \"7879745865\",\r\n    \"Role\" : \"inspection manager\"\r\n}",
+							"raw": "{\r\n    \"First_name\" : \"user\",\r\n    \"last_name\" : \"user\",\r\n    \"email\" : \"inspectore1@test.com\",\r\n    \"password\" : \"1234567890\",\r\n    \"mobile_number\" : \"7879745865\",\r\n    \"role\" : \"inspection manager\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -100,7 +100,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"First_name\" : \"client2\",\r\n    \"Last_name\" : \"name1\",\r\n    \"email\" : \"client2@test.com\",\r\n    \"mobileNumber\" : \"0987656783\",\r\n    \"address\" : \"21 abc street xyz\"\r\n\r\n}",
+							"raw": "{\r\n    \"First_name\" : \"client2\",\r\n    \"last_name\" : \"name1\",\r\n    \"email\" : \"client2@test.com\",\r\n    \"mobile_number\" : \"0987656783\",\r\n    \"address\" : \"21 abc street xyz\"\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

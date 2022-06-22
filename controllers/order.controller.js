@@ -6,7 +6,7 @@ const createOrder = async (req, res) => {
   const { clientId, order_type, from, to, vehical_details } = req.body;
 
   //Validation
-  if (!clientId || !order_type || !from || !to || !vehical_details) {
+  if (!clientId || !order_type || !from || !to || !vehical_details ) {
     res.status(400).send("Please include all fields.");
   } else {
     //save order in db
@@ -24,7 +24,7 @@ const createOrder = async (req, res) => {
           err: err,
         });
       } else {
-        return res.status(200).json({ msg: "order created", data: data });
+        return res.status(200).json({ msg: "order created", data});
       }
     });
   }
@@ -84,10 +84,10 @@ const deleteOrder = async (req, res) => {
   const order = await orderModel
     .findOneAndDelete({ _id: orderId })
     .then((data) => {
-      return res.status(200).json({ msg: "order deleted", data: data });
+      return res.status(200).json({ msg: "order deleted", data });
     })
     .catch((err) => {
-      return res.status(400).json({ msg: "unable to delete order", err: err });
+      return res.status(400).json({ msg: "unable to delete order", err });
     });
 };
 

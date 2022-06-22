@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 //jwt secret enviorment verible
 const config = process.env.JWT_SECRET;
 
-//create auth middleware
+//verify jwt
 const verifyToken = (req, res, next) => {
   const token = req.headers.authorization.split(" ")[1];
 
@@ -14,11 +14,69 @@ const verifyToken = (req, res, next) => {
   try {
     const decoded = jwt.verify(token, config);
     req.user = decoded;
+    console.log("decoded", req.user.role);
+    return next();
   } catch (err) {
     return res.status(401).send("Invalid Token");
   }
-  return next();
+};
+
+//is admin
+const isAdmin = async (req, res, next) => {
+  const token = req.headers.authorization.split(" ")[1];
+
+  if (!token) {
+    return res.status(403).send("A token is required for authentication");
+  }
+  try {
+    const decoded = jwt.verify(token, config);
+    req.user = decoded;
+    console.log("admin decoded", decoded);
+    if (req.user.role === "admin") {
+      return next();
+    }
+  } catch (err) {
+    return res.status(401).send("Invalid user");
+  }
+};
+
+//is procurement
+const isAdminOrProcurement = async (req, res, next) => {
+  const token = req.headers.authorization.split(" ")[1];
+
+  if (!token) {
+    return res.status(403).send("A token is required for authentication");
+  }
+  try {
+    const decoded = jwt.verify(token, config);
+    req.user = decoded;
+    
+    if (req.user.role === "admin" ||req.user.role === "procurement manager" ) {
+      return next();
+    }
+  } catch (err) {
+    return res.status(401).send("Invalid user");
+  }
+};
+
+//is inspectore
+const isAdminOrProcurementOrInspectore = async (req, res, next) => {
+  const token = req.headers.authorization.split(" ")[1];
+
+  if (!token) {
+    return res.status(403).send("A token is required for authentication");
+  }
+  try {
+    const decoded = jwt.verify(token, config);
+    req.user = decoded;
+    console.log("decoded", decoded);
+    if (req.user.role === "admin" ||req.user.role === "procurement manager" ||req.user.role === "inspection manager") {
+      return next();
+    }
+  } catch (err) {
+    return res.status(401).send("Invalid user");
+  }
 };
 
 //export middleware
-module.exports = verifyToken;
+module.exports = { verifyToken, isAdmin,isAdminOrProcurement,isAdminOrProcurementOrInspectore };

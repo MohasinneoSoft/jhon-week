@@ -4,19 +4,20 @@ const { Schema, model } = require("mongoose");
 //create role
 const role_enum = {
   ADMIN: "admin",
-  PROCURMENTMANAGER: "procurment manager",
+  PROCUREMENTMANAGER: "procurement manager",
   INSPECTIONMANAGAER: "inspection manager",
+  CLIENT: "client"
 };
 
 //create user schema
 const userSchema = new Schema(
   {
-    First_name: {
+    first_name: {
       type: String,
       required: true,
     },
 
-    Last_name: {
+    last_name: {
       type: String,
       required: true,
     },
@@ -29,14 +30,16 @@ const userSchema = new Schema(
 
     password: {
       type: String,
-      required: true,
     },
 
-    mobileNumber: [Number],
+    mobile_number: [Number],
 
-    Role: {
+    role: {
       type: String,
       enum: role_enum,
+    },address: {
+      type: String,
+      required: true,
     },
   },
   { timestamps: true }

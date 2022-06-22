@@ -9,10 +9,10 @@ const {
 } = require("../controllers/order.controller");
 
 //auth middleware
-const verifyToken = require("../middleware/auth");
+const { verifyToken, isAdmin,isAdminOrProcurement,isAdminOrProcurementOrInspectore } = require("../middleware/auth");
 
 //create order
-routes.post("/createOrder", verifyToken, createOrder);
+routes.post("/createOrder", verifyToken, isAdminOrProcurement,createOrder);
 
 //get order by id
 routes.get("/getOrderById", getOrderById);
@@ -21,9 +21,9 @@ routes.get("/getOrderById", getOrderById);
 routes.get("/getAllOrder", getAllOrder);
 
 //update order
-routes.put("/updateOrder", verifyToken, updateOrder);
+routes.put("/updateOrder", verifyToken, isAdminOrProcurementOrInspectore,updateOrder);
 
 //delet order
-routes.delete("/deleteOrder", verifyToken, deleteOrder);
+routes.delete("/deleteOrder", verifyToken, isAdminOrProcurement,deleteOrder);
 
 module.exports = routes;
