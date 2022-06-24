@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 //dotenv config
 require("dotenv").config();
 
-//mongoose conection 
+//mongoose conection
 mongoose
   .connect(process.env.db)
   .then(() => {
@@ -13,7 +13,6 @@ mongoose
   .catch((err) => {
     console.log("error", err);
   });
-
 
 //export mongoose
 module.exports = mongoose.connection;

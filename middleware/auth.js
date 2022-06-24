@@ -13,8 +13,6 @@ const verifyToken = (req, res, next) => {
   }
   try {
     const decoded = jwt.verify(token, config);
-    req.user = decoded;
-    console.log("decoded", req.user.role);
     return next();
   } catch (err) {
     return res.status(401).send("Invalid Token");
@@ -31,7 +29,7 @@ const isAdmin = async (req, res, next) => {
   try {
     const decoded = jwt.verify(token, config);
     req.user = decoded;
-    console.log("admin decoded", decoded);
+
     if (req.user.role === "admin") {
       return next();
     }
@@ -40,7 +38,7 @@ const isAdmin = async (req, res, next) => {
   }
 };
 
-//is procurement
+//is admin or procurement
 const isAdminOrProcurement = async (req, res, next) => {
   const token = req.headers.authorization.split(" ")[1];
 
@@ -50,8 +48,8 @@ const isAdminOrProcurement = async (req, res, next) => {
   try {
     const decoded = jwt.verify(token, config);
     req.user = decoded;
-    
-    if (req.user.role === "admin" ||req.user.role === "procurement manager" ) {
+
+    if (req.user.role === "admin" || req.user.role === "procurement manager") {
       return next();
     }
   } catch (err) {
@@ -59,7 +57,7 @@ const isAdminOrProcurement = async (req, res, next) => {
   }
 };
 
-//is inspectore
+//is inspectore or procurement or admin
 const isAdminOrProcurementOrInspectore = async (req, res, next) => {
   const token = req.headers.authorization.split(" ")[1];
 
@@ -69,8 +67,11 @@ const isAdminOrProcurementOrInspectore = async (req, res, next) => {
   try {
     const decoded = jwt.verify(token, config);
     req.user = decoded;
-    console.log("decoded", decoded);
-    if (req.user.role === "admin" ||req.user.role === "procurement manager" ||req.user.role === "inspection manager") {
+    if (
+      req.user.role === "admin" ||
+      req.user.role === "procurement manager" ||
+      req.user.role === "inspection manager"
+    ) {
       return next();
     }
   } catch (err) {
@@ -79,4 +80,9 @@ const isAdminOrProcurementOrInspectore = async (req, res, next) => {
 };
 
 //export middleware
-module.exports = { verifyToken, isAdmin,isAdminOrProcurement,isAdminOrProcurementOrInspectore };
+module.exports = {
+  verifyToken,
+  isAdmin,
+  isAdminOrProcurement,
+  isAdminOrProcurementOrInspectore,
+};

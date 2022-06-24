@@ -10,10 +10,10 @@ const createClient = async (req, res) => {
     res.status(400).send("Please include all fields.");
   }
 
-  const clientExists = await userModel.findOne({ email,mobile_number });
+  const clientExists = await userModel.findOne( {email,mobile_number});
 
   if (clientExists) {
-    res.status(400).send("Email already exists");
+    res.status(400).send("Email or mobile_number already exists");
   } else {
     //save client in db
     const client = new userModel({
@@ -22,7 +22,7 @@ const createClient = async (req, res) => {
       email,
       mobile_number,
       address,
-      role : "client"
+      role: "client",
     });
     client.save((err, data) => {
       if (err) {
@@ -38,45 +38,37 @@ const createClient = async (req, res) => {
 };
 
 //get all client  list with paggination
-// const getlistOfClient = async(req, res) => {
-//   let page = req.query.pageNo - 1;
-//   let limit = req.query.limit;
-//   let skip = page * limit;
-//   const user = await userModel
-//     .find().where(userModel.role).equals("client")
-//     .limit(limit)
-//     .skip(skip)
-//     .then((data) => {
-//       return res.status(200).json({
-//         total: data.length,
-//         msg: "successfully got all client",
-//       data
-//       });
-//     })
-//     .catch((err) => {
-//       return res.status(400).json({ error: err, msg: "failed to get client" });
-//     });
-//     console.log(user , "client");
-// };
-
-//get client by id
-const getClientById = (req, res) => {
-  let id = req.param.id;
-  userModel
-    .findById(id)
+const getlistOfClient = async (req, res) => {
+  let page = req.query.pageNo - 1;
+  let limit = req.query.limit;
+  let skip = page * limit;
+  const user = await userModel
+    .find({ role: "client" })
+    .limit(limit)
+    .skip(skip)
     .then((data) => {
       return res.status(200).json({
         total: data.length,
-        msg: "successfully got client",
-        result: data,
+        msg: "successfully got all client",
+        data,
       });
     })
     .catch((err) => {
-      return res.status(400).json({
-        error: err,
-        msg: "failed to get client",
-      });
+      return res.status(400).json({ error: err, msg: "failed to get client" });
     });
+  console.log(user, "client");
 };
 
+//get client by id
+const getClientById = async (req, res) => {
+  const clientId = req.query.id;
+
+  let client = await userModel.findById(clientId);
+
+  if (client) {
+    res.status(200).json({ msg: "got client details succesfully", client });
+  } else {
+    res.status(404).json({ msg: "unable to get client details" });
+  }
+};
 module.exports = { createClient, getClientById, getlistOfClient };

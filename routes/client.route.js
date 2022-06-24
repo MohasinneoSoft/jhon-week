@@ -2,18 +2,27 @@ const express = require("express");
 const routes = express.Router();
 const {
   createClient,
-  // getlistOfClient,
+  getlistOfClient,
   getClientById,
 } = require("../controllers/client.controller");
 
-const { verifyToken,isAdminOrProcurement,isAdminOrProcurementOrInspectore } = require("../middleware/auth");
+const {
+  verifyToken,
+  isAdminOrProcurement,
+  isAdminOrProcurementOrInspectore,
+} = require("../middleware/auth");
 //create client
-routes.post("/createClient", verifyToken, isAdminOrProcurement,createClient);
+routes.post("/createClient", verifyToken, isAdminOrProcurement, createClient);
 
 // //get all client
-// routes.get("/getAllClient", verifyToken, isAdminOrProcurement,getlistOfClient);
+routes.get("/getAllClient", verifyToken, isAdminOrProcurement, getlistOfClient);
 
 //get client by id
-routes.get("/getClientById", verifyToken,isAdminOrProcurementOrInspectore,getClientById);
+routes.get(
+  "/getClientById",
+  verifyToken,
+  isAdminOrProcurementOrInspectore,
+  getClientById
+);
 
 module.exports = routes;

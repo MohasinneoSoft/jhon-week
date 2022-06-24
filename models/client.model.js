@@ -4,12 +4,12 @@ const { Schema, model } = require("mongoose");
 //create client schema
 const clientSchema = new Schema(
   {
-    First_name: {
+    first_name: {
       type: String,
       required: true,
     },
 
-    Last_name: {
+    last_name: {
       type: String,
       required: true,
     },

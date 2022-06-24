@@ -8,7 +8,6 @@ require("dotenv").config();
 const signUpuser = async (req, res) => {
   const { first_name, last_name, email, password, mobile_number, role } =
     req.body;
-    console.log("hi")
 
   //Validation
   if (
@@ -20,63 +19,58 @@ const signUpuser = async (req, res) => {
     !role
   ) {
     res.status(400).send("Please include all fields.");
-  }else{
-
-  //Find the user already exists
-  const userExists = await userModel.findOne({ email , mobile_number  });
-
-  if (userExists) {
-    res.status(400).send("Email already exists");
   } else {
-    // hash password
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    //Find the user already exists
+    const userExists = await userModel.findOne({email ,mobile_number});
 
-    //save user in db
-    const user = new userModel({
-      first_name,
-      last_name,
-      email,
-      password: hashedPassword,
-      mobile_number,
-      role,
-      token: "",
-    });
-    user.save((err, user) => {
-      if (err) {
-        return res.status(400).json({
-          message: "not able to save user",
-         err
-        });
-      } else {
-        return res.status(200).json({
-          user
-        });
-      }
-    });
-  }}
+    if (userExists) {
+      res.status(400).send("Email or mobile_number  already exists");
+    } else {
+      // hash password
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(password, salt);
+
+      //save user in db
+      const user = new userModel({
+        first_name,
+        last_name,
+        email,
+        password: hashedPassword,
+        mobile_number,
+        role,
+        token: "",
+      });
+      user.save((err, user) => {
+        if (err) {
+          return res.status(400).json({
+            message: "not able to save user",
+            err,
+          });
+        } else {
+          return res.status(200).json({
+            user,
+          });
+        }
+      });
+    }
+  }
 };
 
 //login api of user with jwt
 const loginUser = async (req, res) => {
   const { mobile_number, email, password } = req.body;
-  
-  const userEmail = await userModel.findOne({ email});
 
-  const userMobile = await userModel.findOne({mobile_number});
+  const userEmail = await userModel.findOne({ email });
 
-  
-  const user = userEmail || userMobile
+  const userMobile = await userModel.findOne({ mobile_number });
 
-  console.log(user);
+  const user = userEmail || userMobile;
 
   const ComparePass = await bcrypt.compare(password, user.password);
 
   // check user & password match
   if (user && ComparePass) {
-
-    console.log({ _id: user._id , role : user.role  });
-    const token = generateToken({ _id: user._id , role : user.role  });
+    const token = generateToken({ _id: user._id, role: user.role });
 
     //put token in cookie
     res.cookie("token", token, { expire: new Date() + 9999 });

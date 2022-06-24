@@ -29,7 +29,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\" : \"admin@test.com\",\r\n    \"password\" : \"1234567890\"\r\n    \r\n}",
+							"raw": "{\r\n    \"mobile_number\" : \"1234567890\",\r\n    \"password\" : \"1234567890\"\r\n    \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -58,7 +58,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmE5ZDA2ZmIzZjc3NTY0NTEyZWViNTkiLCJpYXQiOjE2NTUzNTY1OTcsImV4cCI6MTY1NTQ0Mjk5N30.6mh4aPvhlDmYvn2if62JQ1kbn6sbttuFyP3S3C7v5yg",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmIxYWQwMzYwOTAzOTk3ZTI0YjcxY2IiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NTYwNDgzMTQsImV4cCI6MTY1NjEzNDcxNH0.Styfu2vLYROb5WV1urfdf3aXd7oB1f-zXaS7W6UtKKU",
 									"type": "string"
 								}
 							]
@@ -67,7 +67,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"First_name\" : \"user\",\r\n    \"last_name\" : \"user\",\r\n    \"email\" : \"inspectore1@test.com\",\r\n    \"password\" : \"1234567890\",\r\n    \"mobile_number\" : \"7879745865\",\r\n    \"role\" : \"inspection manager\"\r\n}",
+							"raw": "{\r\n    \"first_name\" : \"inspectore\",\r\n    \"last_name\" : \"2\",\r\n    \"email\" : \"inspectore2@test.com\",\r\n    \"mobile_number\":\"987654321\",\r\n    \"password\" : \"1234567890\",\r\n    \"role\" : \"inspection manager\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -96,11 +96,21 @@
 				{
 					"name": "create client",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmIxYWQwMzYwOTAzOTk3ZTI0YjcxY2IiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NTYwNDgzMTQsImV4cCI6MTY1NjEzNDcxNH0.Styfu2vLYROb5WV1urfdf3aXd7oB1f-zXaS7W6UtKKU",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"First_name\" : \"client2\",\r\n    \"last_name\" : \"name1\",\r\n    \"email\" : \"client2@test.com\",\r\n    \"mobile_number\" : \"0987656783\",\r\n    \"address\" : \"21 abc street xyz\"\r\n\r\n}",
+							"raw": "{\r\n    \"first_name\" : \"client\",\r\n    \"last_name\" : \"1\",\r\n    \"email\" : \"client1@test.com\",\r\n    \"mobile_number\" : \"987654321\",\r\n    \"address\" : \"21 abc street xyz\"\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -124,6 +134,16 @@
 				{
 					"name": "get all client",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmIxYWQwMzYwOTAzOTk3ZTI0YjcxY2IiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NTU5ODcxODQsImV4cCI6MTY1NjA3MzU4NH0.CHBsMpBMNQ8c_TkFl9MX9yavZVQmuYOA_whU8pmgx3s",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -143,10 +163,20 @@
 				{
 					"name": "getClientById",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmIxYWQwMzYwOTAzOTk3ZTI0YjcxY2IiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NTYwNDgzMTQsImV4cCI6MTY1NjEzNDcxNH0.Styfu2vLYROb5WV1urfdf3aXd7oB1f-zXaS7W6UtKKU",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8000/client/getClientById?id=62aae3a7d8ebc28c00b1bed6",
+							"raw": "localhost:8000/client/getClientById?id=62b55057cec5733f764968c3",
 							"host": [
 								"localhost"
 							],
@@ -158,7 +188,7 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "62aae3a7d8ebc28c00b1bed6"
+									"value": "62b55057cec5733f764968c3"
 								}
 							]
 						}
@@ -190,7 +220,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\" : \"user@test.com\",\r\n    \"password\" : \"1234567890\"\r\n    \r\n}",
+							"raw": "{\r\n    \"email\" : \"procurement@test.com\",\r\n    \"password\" : \"1234567890\"\r\n    \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -236,7 +266,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\" : \"inspectore@test.com\",\r\n    \"password\" : \"1234567890\"\r\n    \r\n}",
+							"raw": "{\r\n    \"email\" : \"inspectore2@test.com\",\r\n    \"password\" : \"1234567890\"\r\n    \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -265,11 +295,21 @@
 				{
 					"name": "create order",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmIxYWQwMzYwOTAzOTk3ZTI0YjcxY2IiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NTYwNDgzMTQsImV4cCI6MTY1NjEzNDcxNH0.Styfu2vLYROb5WV1urfdf3aXd7oB1f-zXaS7W6UtKKU",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"clientId\" : \"62aac3180a873172fc9deb3a\",\r\n    \"order_type\" : \"charger\",\r\n    \"from\" : \"ujjain\",\r\n    \"to\" : \"delhi\",\r\n    \"vehical_details\": \"MP90EY8929 , driverNAme , Licence No \"\r\n}",
+							"raw": "{\r\n    \"clientId\" : \"62b55057cec5733f764968c3\",\r\n    \"order_type\" : \"dell laptop\",\r\n    \"from\" : \"indore\",\r\n    \"to\" : \"delhi\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -296,7 +336,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8000/order/getOrderById?id=62aad4fbc4c54ddc4eabb2c7",
+							"raw": "localhost:8000/order/getOrderById?id=62b553eb4cd33e6a0a532fb9",
 							"host": [
 								"localhost"
 							],
@@ -308,7 +348,7 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "62aad4fbc4c54ddc4eabb2c7"
+									"value": "62b553eb4cd33e6a0a532fb9"
 								}
 							]
 						}
@@ -321,7 +361,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8000/order/getAllOrder?id=62aac3180a873172fc9deb3a",
+							"raw": "localhost:8000/order/getAllOrder?id=62b55057cec5733f764968c3",
 							"host": [
 								"localhost"
 							],
@@ -333,8 +373,189 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "62aac3180a873172fc9deb3a"
+									"value": "62b55057cec5733f764968c3"
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateOrder",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmIxYWQwMzYwOTAzOTk3ZTI0YjcxY2IiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NTYwNDgzMTQsImV4cCI6MTY1NjEzNDcxNH0.Styfu2vLYROb5WV1urfdf3aXd7oB1f-zXaS7W6UtKKU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"order_type\" : \"milk\",\r\n    \"from\" : \"bombay\",\r\n    \"to\" : \"ujjain\",\r\n    \"status\" : \"inspected\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/order/updateOrder/62b553eb4cd33e6a0a532fb9",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"order",
+								"updateOrder",
+								"62b553eb4cd33e6a0a532fb9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmIxYWQwMzYwOTAzOTk3ZTI0YjcxY2IiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NTYwNDgzMTQsImV4cCI6MTY1NjEzNDcxNH0.Styfu2vLYROb5WV1urfdf3aXd7oB1f-zXaS7W6UtKKU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/order/deleteOrder/62b5580fb9d48b0470e952c8",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"order",
+								"deleteOrder",
+								"62b5580fb9d48b0470e952c8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "checklist api",
+			"item": [
+				{
+					"name": "create checklist",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmIxYWQwMzYwOTAzOTk3ZTI0YjcxY2IiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NTYwNDgzMTQsImV4cCI6MTY1NjEzNDcxNH0.Styfu2vLYROb5WV1urfdf3aXd7oB1f-zXaS7W6UtKKU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"order_id\" : \"62b553eb4cd33e6a0a532fb9\",\r\n     \"vehical_type\" : \"container\",\r\n     \"client_requirment\" : \"container\",\r\n     \"vehical_details\" : \"MP21EY7848 , gopal , DL-No - NNICS9283N\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/checklist/createChecklist",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"checklist",
+								"createChecklist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateChecklist",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmIxYWQwMzYwOTAzOTk3ZTI0YjcxY2IiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NTYwNDgzMTQsImV4cCI6MTY1NjEzNDcxNH0.Styfu2vLYROb5WV1urfdf3aXd7oB1f-zXaS7W6UtKKU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\" : \"inspected\",\r\n    \"vehical_type\" : \"lorry \",\r\n     \"client_requirment\" : \"container\",\r\n     \"vehical_details\" : \"MP21EY7848 , mohan , DL-No - NNICS9283N\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/checklist/updateChecklist/62b5594e43c4b4b2bc45b10c",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"checklist",
+								"updateChecklist",
+								"62b5594e43c4b4b2bc45b10c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delet checklist",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmIxYWQwMzYwOTAzOTk3ZTI0YjcxY2IiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NTYwNDgzMTQsImV4cCI6MTY1NjEzNDcxNH0.Styfu2vLYROb5WV1urfdf3aXd7oB1f-zXaS7W6UtKKU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/checklist/deleteChecklist/62b5547a4cd33e6a0a532fc0",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"checklist",
+								"deleteChecklist",
+								"62b5547a4cd33e6a0a532fc0"
 							]
 						}
 					},

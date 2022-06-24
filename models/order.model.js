@@ -9,13 +9,12 @@ const orderSchema = new Schema(
       ref: "clients",
     },
 
-    order_type: { 
+    order_type: {
       type: String,
       required: true,
     },
-    order_image:{
-      type:String,
-      required: true
+    order_image: {
+      type: String,
     },
 
     from: {
@@ -25,13 +24,6 @@ const orderSchema = new Schema(
     to: {
       type: String,
       required: true,
-    },
-    vehical_details: {
-      type: String,
-    },
-    vehical_image:{
-      type:String,
-      required: true
     },
 
     status: {

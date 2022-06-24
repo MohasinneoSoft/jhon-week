@@ -6,7 +6,7 @@ const role_enum = {
   ADMIN: "admin",
   PROCUREMENTMANAGER: "procurement manager",
   INSPECTIONMANAGAER: "inspection manager",
-  CLIENT: "client"
+  CLIENT: "client",
 };
 
 //create user schema
@@ -32,14 +32,19 @@ const userSchema = new Schema(
       type: String,
     },
 
-    mobile_number: [Number],
+    mobile_number: {
+      type: Number,
+      unique: true,
+      required: true,
+      
+    },
 
     role: {
       type: String,
       enum: role_enum,
-    },address: {
+    },
+    address: {
       type: String,
-      required: true,
     },
   },
   { timestamps: true }
